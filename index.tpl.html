@@ -94,8 +94,9 @@
 
 				stadtteil = prompt('Stadtteil:')
 				title = prompt('Titel:')
+				notizen = prompt('Notizen')
 
-				$.post('/building', {'stadtteil': stadtteil, 'title': title, 'coords': JSON.stringify(latlng)})
+				$.post('/building', {'stadtteil': stadtteil, 'title': title,'notizen': notizen, 'coords': JSON.stringify(latlng)})
             }
 
             // Do whatever else you need to. (save to db, add to map etc)
