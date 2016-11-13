@@ -4,6 +4,8 @@ from make import make_leaflet
 import webbrowser
 app = Flask(__name__)
 
+notizen = 'Keine Notizen.'
+
 @app.route('/')
 def index():
     return open('index.html').read()
@@ -13,6 +15,7 @@ def building():
     print(request.form['title'])
     stadtteil = request.form['stadtteil'].title()
     title = request.form['title']
+    notizen = request.form['notizen']
     coords = request.form['coords']
     filename = 'data/buildings/stadt/'+stadtteil+'-'+title.replace('-', ' ').title().replace(' ', '')
     try:
@@ -23,7 +26,7 @@ def building():
         return ''
 
     f = open(filename, 'w')
-    f.write(title+'\n'+coords+'\n\nKeine Notizen.\n')
+    f.write(title+'\n'+coords+'\n\n'+notizen+'\n')
     f.close()
 
     make_leaflet()
@@ -32,3 +35,5 @@ def building():
 make_leaflet()
 
 app.run(debug=True)
+
+
